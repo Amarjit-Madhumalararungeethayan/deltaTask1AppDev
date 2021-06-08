@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Quizzer</string>
+    <string name="Header">Date :</string>
+    <string name="dayH"><![CDATA[Day ->]]></string>
+    <string name="amar">amar</string>
+    <string name="month"><![CDATA[Month ->]]></string>
+    <string name="year"><![CDATA[Year ->]]></string>
+    <string name="randomise">Randomise</string>
+    <string name="this_day_falls_on">The Day is ...</string>
+    <string name="is_it_the_right_answer">Is it the Right Answer ?</string>
+    <string name="d1">Monday</string>
+    <string name="d2">Tuesday</string>
+    <string name="d3">Wednesday</string>
+    <string name="d4">Thursday</string>
+    <string name="d5">Friday</string>
+    <string name="d6">Saturday</string>
+    <string name="d7">Sunday</string>
+    <string name="button">Button</string>
+    <string name="_0">0</string>
+    <string name="startING">Start</string>
+    <string name="quiz">Quiz</string>
+    <string name="click_here_to_start">Click here to Start</string>
+    <string name="game_over">Game Over ...</string>
+    <string name="your_score">Your Score ...</string>
+    <string name="xx">XX</string>
+</resources>
