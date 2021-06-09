@@ -1,9 +1,7 @@
 package com.example.quizzer
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +17,10 @@ class questions : AppCompatActivity() {
     private lateinit var binding: ActivityQuestionsBinding
 
 
+    override fun onBackPressed() {
+     // super.onBackPressed();
+     // Not calling **super**, disables back button in current screen.
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
@@ -162,8 +164,6 @@ class questions : AppCompatActivity() {
 
                     successSound()                                  // gives a success ping
 
-
-                    binding.timeChange.text = "+10"
                     countDown2(1500, 1000)
 
 
@@ -199,9 +199,6 @@ class questions : AppCompatActivity() {
 
                     successSound()
 
-
-
-                    binding.timeChange.text = "+10"
                     countDown2(1500, 1000)
 
                     ranDate()
@@ -235,7 +232,6 @@ class questions : AppCompatActivity() {
 
                     successSound()
 
-                    binding.timeChange.text = "+10"
                     countDown2(1500, 1000)
 
                     ranDate()
@@ -266,7 +262,6 @@ class questions : AppCompatActivity() {
 
                     successSound()
 
-                    binding.timeChange.text = "+10"
                     countDown2(1500, 1000)
 
                     ranDate()
