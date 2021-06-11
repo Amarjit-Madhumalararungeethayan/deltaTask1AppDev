@@ -1,3 +1,5 @@
+
+
 package com.example.quizzer
 
 import android.annotation.SuppressLint
@@ -351,7 +353,7 @@ class questions : AppCompatActivity() {
         val output2 = savedInstanceState.getLong("S2",0)
 
         binding.score.text = output1.toString()
-        binding.timer.text = output2.toString()
+        mainCount(output2.toInt(),1000)
     }
 }
 
