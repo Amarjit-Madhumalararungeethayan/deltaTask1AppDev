@@ -2,18 +2,18 @@
 
 package com.example.quizzer
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.media.MediaPlayer
+import android.annotation.SuppressLint //
+import android.content.Intent //
+import android.media.MediaPlayer //
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzer.databinding.ActivityQuestionsBinding
-import java.util.*
+import java.util.* //
 
 
 var total = 0
 var timeleft : Long = 0
-
+var jff : CountDownTimer? = null
 class questions : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuestionsBinding
@@ -23,6 +23,7 @@ class questions : AppCompatActivity() {
      // super.onBackPressed();
      // Not calling **super**, disables back button in current screen.
     }
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuestionsBinding.inflate(layoutInflater)
@@ -31,17 +32,14 @@ class questions : AppCompatActivity() {
         setContentView(view)
 
         binding.result.text = " The Day of the Week is ... "
-        val highScore = binding.score.text.toString()
 
-        mainCount(90000, 1000)
+        jff = mainCount(90000)
     }
 
     //countdown for turning screen black again
-    private fun countDown1(x: Int, y: Int) {
+    private fun countDown1() {
         val countDown: CountDownTimer
-        val X = x.toLong()
-        val Y = y.toLong()
-        countDown = object : CountDownTimer(X, Y) {
+        countDown = object : CountDownTimer(200, 10) {
             override fun onTick(millisUntil: Long) {
             }
 
@@ -53,11 +51,9 @@ class questions : AppCompatActivity() {
     } //❤️
 
     //countdown to clear the inc/dec in time
-    private fun countDown2(x: Int, y: Int) {
+    private fun countDown2() {
         val countDown: CountDownTimer
-        val X = x.toLong()
-        val Y = y.toLong()
-        countDown = object : CountDownTimer(X, Y) {
+        countDown = object : CountDownTimer(1500, 1000) {
             override fun onTick(millisUntil: Long) {
             }
 
@@ -69,12 +65,13 @@ class questions : AppCompatActivity() {
     } //❤️
 
     //main timer with ranDate function enclosed
-    private fun mainCount(x: Int, y: Int) {
-        var countDown: CountDownTimer
-        val X = x.toLong()
-        val Y = y.toLong()
+    private fun mainCount(x: Int): CountDownTimer {
+        val countDown: CountDownTimer
+        val a = x.toLong()
 
-        countDown = object : CountDownTimer(X, Y) {
+        countDown = object : CountDownTimer(a, 1000) {
+
+
 
             override fun onTick(millisecsToFinish: Long) {
                 binding.timer.text = (millisecsToFinish / 1000).toString()
@@ -83,18 +80,22 @@ class questions : AppCompatActivity() {
 
             override fun onFinish() {
                 val intent = Intent(baseContext, resultPage::class.java)
+                finish()
                 intent.putExtra("SCORE",total)
                 startActivity(intent)
-                finish()
+
             }
         }
+
         countDown.start()
 
+
         //main function
+        @SuppressLint("SetTextI18n")
         fun ranDate() {
 
             //choosing a random date and displaying it
-            val a = (1..30).random()
+            val w = (1..30).random()
             val b = (0..11).random()
 
             val monthName = when (b) {
@@ -114,12 +115,12 @@ class questions : AppCompatActivity() {
             }
             val c = (1900..2000).random()
 
-            binding.day.text = "   " + a.toString() + "   "
+            binding.day.text = "   " + w.toString() + "   "
             binding.month.text = "   " + monthName + "   "
             binding.year.text = "   " + c.toString() + "   "
 
-            val resultDay = idDay(a, b, c)
-            val Days = mutableListOf(
+            val resultDay = idDay(w, b, c)
+            val days = mutableListOf(
                     "Monday",
                     "Tuesday",
                     "Wednesday",
@@ -130,12 +131,12 @@ class questions : AppCompatActivity() {
                 )
 
             //choosing random options with the correct answer being one among them
-            Days.remove(resultDay)
-            val dayOpt1Name = Days[(0..5).random()]
-            Days.remove(dayOpt1Name)
-            val dayOpt2Name = Days[(0..4).random()]
-            Days.remove(dayOpt2Name)
-            val dayOpt3Name = Days[(0..3).random()]
+            days.remove(resultDay)
+            val dayOpt1Name = days[(0..5).random()]
+            days.remove(dayOpt1Name)
+            val dayOpt2Name = days[(0..4).random()]
+            days.remove(dayOpt2Name)
+            val dayOpt3Name = days[(0..3).random()]
 
             val newList = mutableListOf(resultDay, dayOpt1Name, dayOpt2Name, dayOpt3Name)
 
@@ -148,10 +149,10 @@ class questions : AppCompatActivity() {
             val option4 = newList[0]
 
             //displaying the random options
-            binding.opt1.text = option1.toString()
-            binding.opt2.text = option2.toString()
-            binding.opt3.text = option3.toString()
-            binding.opt4.text = option4.toString()
+            binding.opt1.text = option1
+            binding.opt2.text = option2
+            binding.opt3.text = option3
+            binding.opt4.text = option4
 
 
 
@@ -162,11 +163,11 @@ class questions : AppCompatActivity() {
                     binding.score.text = " " + total.toString() + " "
                     vibrateNow()
                     binding.abc.setBackgroundResource(R.color.green)        //change bg to green
-                    countDown1(200, 10)             //changes bg back to black after a time period
+                    countDown1()             //changes bg back to black after a time period
 
                     successSound()                                  // gives a success ping
 
-                    countDown2(1500, 1000)
+                    countDown2()
 
 
 
@@ -175,18 +176,19 @@ class questions : AppCompatActivity() {
 
                 } else {
                     binding.abc.setBackgroundResource(R.color.red)  //sets bg to red
-                    countDown1(200, 10)                             // changes bg to black after a short span
+                    countDown1()                             // changes bg to black after a short span
                     total -= 1
                     binding.score.text = " " + total.toString() + " "    //displays new score
                     failSound()                             //gives a wrong sound
 
 
                     binding.timeChange.text = "-5"              //results in a -5 (time left)
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     countDown.cancel()
                     binding.timer.text = " "
-                    mainCount(timeleft.toInt() - 5000, 1000)               //redues the time left by 5 seconds
+                    timeleft = timeleft - 5000
+                    mainCount(timeleft.toInt() ) //reduces the time left by 5 seconds
 
 
                 }
@@ -197,29 +199,31 @@ class questions : AppCompatActivity() {
                     binding.score.text = " " + total.toString() + " "
                     vibrateNow()
                     binding.abc.setBackgroundResource(R.color.green)
-                    countDown1(200, 10)
+                    countDown1()
 
                     successSound()
 
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     ranDate()
 
                 } else {
                     //total = 0
                     binding.abc.setBackgroundResource(R.color.red)
-                    countDown1(200, 10)
+                    countDown1()
                     total -= 1
                     binding.score.text = " " + total.toString() + " "
                     failSound()
 
 
                     binding.timeChange.text = "-5"
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     countDown.cancel()
                     binding.timer.text = " "
-                    mainCount(timeleft.toInt() - 5000, 1000)
+
+                    timeleft = timeleft - 5000
+                    mainCount(timeleft.toInt())
 
                 }
 
@@ -229,27 +233,29 @@ class questions : AppCompatActivity() {
                     total += 3
                     binding.score.text = " " + total.toString() + " "
                     vibrateNow()
-                    countDown1(200, 10)
+                    countDown1()
                     binding.abc.setBackgroundResource(R.color.green)
 
                     successSound()
 
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     ranDate()
                 } else {
                     binding.abc.setBackgroundResource(R.color.red)
-                    countDown1(200, 10)
+                    countDown1()
                     total -= 1
                     binding.score.text = " " + total.toString() + " "
                     failSound()
 
                     binding.timeChange.text = "-5"
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     countDown.cancel()
                     binding.timer.text = " "
-                    mainCount(timeleft.toInt() - 5000, 1000)
+
+                    timeleft = timeleft - 5000
+                    mainCount(timeleft.toInt())
 
 
                 }
@@ -260,40 +266,42 @@ class questions : AppCompatActivity() {
                     binding.score.text = " " + total.toString() + " "
                     vibrateNow()
                     binding.abc.setBackgroundResource(R.color.green)
-                    countDown1(200, 10)
+                    countDown1()
 
                     successSound()
 
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     ranDate()
                 } else {
                     //total = 0
                     binding.abc.setBackgroundResource(R.color.red)
-                    countDown1(200, 10)
+                    countDown1()
                     total -= 1
                     binding.score.text = " " + total.toString() + " "
                     failSound()
 
                     binding.timeChange.text = "-5"
-                    countDown2(1500, 1000)
+                    countDown2()
 
                     countDown.cancel()
                     binding.timer.text = " "
-                    mainCount(timeleft.toInt() - 5000, 1000)
+
+                    timeleft = timeleft - 5000
+                    mainCount(timeleft.toInt())
 
                 }
             }
-
-
         }
 
         //starts showing questions
         ranDate()
+
+        return countDown
     }
 
 
-        @SuppressLint("SetTextI18n", "ResourceAsColor")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
 
         //all audios
 
@@ -353,7 +361,8 @@ class questions : AppCompatActivity() {
         val output2 = savedInstanceState.getLong("S2",0)
 
         binding.score.text = output1.toString()
-        mainCount(output2.toInt(),1000)
+        jff?.cancel()
+        mainCount(output2.toInt())
     }
 }
 

@@ -1,6 +1,5 @@
 package com.example.quizzer
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -23,7 +22,7 @@ class resultPage : AppCompatActivity() {
         val score = intent.getIntExtra("SCORE", 0)
 
         sharedPrefs = getSharedPreferences("HighScore", MODE_PRIVATE)
-        var highscore = sharedPrefs.getInt("highscore", 0)
+        val highscore = sharedPrefs.getInt("highscore", 0)
 
         if (highscore >= score) {
             binding.textView13.text = highscore.toString()
@@ -32,7 +31,7 @@ class resultPage : AppCompatActivity() {
             binding.textView13.text = score.toString()
             val editor = getSharedPreferences("HighScore", MODE_PRIVATE).edit()
             editor.putInt("highscore", score)
-            editor.commit()
+            editor.apply()
         }
         binding.textView6.text = score.toString()
         total = 0

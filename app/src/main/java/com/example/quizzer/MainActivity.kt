@@ -1,7 +1,6 @@
 package com.example.quizzer
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +11,6 @@ import com.example.quizzer.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    lateinit var sharedPrefs : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
