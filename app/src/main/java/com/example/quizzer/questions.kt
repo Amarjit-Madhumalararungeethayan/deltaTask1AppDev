@@ -33,7 +33,7 @@ class questions : AppCompatActivity() {
 
         binding.result.text = " The Day of the Week is ... "
 
-        jff = mainCount(90000)
+        mainCount(90000)
     }
 
     //countdown for turning screen black again
@@ -65,7 +65,7 @@ class questions : AppCompatActivity() {
     } //❤️
 
     //main timer with ranDate function enclosed
-    private fun mainCount(x: Int): CountDownTimer {
+    private fun mainCount(x: Int):Int {
         val countDown: CountDownTimer
         val a = x.toLong()
 
@@ -296,8 +296,8 @@ class questions : AppCompatActivity() {
 
         //starts showing questions
         ranDate()
-
-        return countDown
+        jff = countDown
+        return 0
     }
 
 
