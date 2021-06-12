@@ -1,19 +1,20 @@
-
-
 package com.example.quizzer
 
-import android.annotation.SuppressLint //
-import android.content.Intent //
-import android.media.MediaPlayer //
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.media.MediaPlayer
 import android.os.*
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzer.databinding.ActivityQuestionsBinding
-import java.util.* //
+import java.util.*
 
 
 var total = 0
 var timeleft : Long = 0
 var jff : CountDownTimer? = null
+var temp = 0
 class questions : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuestionsBinding
@@ -31,8 +32,7 @@ class questions : AppCompatActivity() {
         binding.timeChange.text = " "
         setContentView(view)
 
-        binding.result.text = " The Day of the Week is ... "
-
+        binding.result.text = " Day of the Week is ... "
         mainCount(90000)
     }
 
@@ -44,7 +44,7 @@ class questions : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                binding.abc.setBackgroundResource(R.color.black)
+                binding.abc.setBackgroundResource(R.color.lightYellow)
             }
         }
         countDown.start()

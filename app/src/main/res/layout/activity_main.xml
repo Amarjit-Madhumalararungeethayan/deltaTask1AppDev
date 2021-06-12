@@ -4,18 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screenshot_2021_06_01_at_9_53_33_pm"
+    android:background="#A6FFFF8F"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="56dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/screenshot_2021_06_12_at_8_57_39_pm" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Amarjit"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="and"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/textView9" />
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Delta"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
 
     <Button
         android:id="@+id/start"
         android:layout_width="225dp"
         android:layout_height="114dp"
-        android:background="@drawable/rounded_black"
+        android:fontFamily="sans-serif-condensed-light"
         android:text="START"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="40sp"
-        app:backgroundTint="#000000"
+        app:backgroundTint="#FFE4B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -28,22 +76,24 @@
         android:layout_width="229dp"
         android:layout_height="106dp"
         android:layout_marginTop="104dp"
-        android:text="  Quiz "
-        android:textColor="@color/white"
+        android:background="@drawable/square"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="   Quiz "
+        android:textColor="@color/black"
         android:textSize="72sp"
         app:layout_constraintBottom_toTopOf="@+id/start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.649"
-        android:background="@drawable/rounded_black"/>
+        app:layout_constraintVertical_bias="0.649" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="124dp"
+        android:fontFamily="sans-serif-condensed-light"
         android:text="@string/click_here_to_start"
         android:textColor="#000000"
         android:textSize="32sp"
@@ -52,7 +102,6 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start"
-        app:layout_constraintVertical_bias="0.0"
-        android:background = "@drawable/rounded_white"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
