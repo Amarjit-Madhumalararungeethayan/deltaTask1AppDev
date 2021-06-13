@@ -33,7 +33,7 @@ class questions : AppCompatActivity() {
         setContentView(view)
 
         binding.result.text = " Day of the Week is ... "
-        mainCount(90000)
+        mainCount(60000)
     }
 
     //countdown for turning screen black again
@@ -149,15 +149,15 @@ class questions : AppCompatActivity() {
             val option4 = newList[0]
 
             //displaying the random options
-            binding.opt1.text = option1
+            binding.opt1?.text = option1
             binding.opt2.text = option2
-            binding.opt3.text = option3
+            binding.opt3?.text = option3
             binding.opt4.text = option4
 
 
 
             //if option 1 is clicked
-            binding.opt1.setOnClickListener() {
+            binding.opt1?.setOnClickListener() {
                 if (option1 == resultDay) {         //correct answer
                     total += 3
                     binding.score.text = " " + total.toString() + " "
@@ -228,7 +228,7 @@ class questions : AppCompatActivity() {
                 }
 
             }
-            binding.opt3.setOnClickListener() {
+            binding.opt3?.setOnClickListener() {
                 if (option3 == resultDay) {
                     total += 3
                     binding.score.text = " " + total.toString() + " "
